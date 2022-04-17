@@ -1,18 +1,30 @@
 package com.Nivesh.ECommerceWebsite.Entities.UserDetails;
 
+import com.Nivesh.ECommerceWebsite.Entities.Users.Customer;
+import com.Nivesh.ECommerceWebsite.Entities.Users.Seller;
+import com.Nivesh.ECommerceWebsite.Entities.Users.User;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "address")
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "city")
     private String city;
+    @Column(name = "State")
     private String state;
+    @Column(name = "Country")
     private String country;
+    @Column(name = "address_line")
     private String addressLine;
+    @Column(name = "zip_code")
     private Integer zipCode;
+    @Column(name = "Label")
     private String label;
 
     public Long getId() {
@@ -70,4 +82,5 @@ public class Address {
     public void setLabel(String label) {
         this.label = label;
     }
+
 }

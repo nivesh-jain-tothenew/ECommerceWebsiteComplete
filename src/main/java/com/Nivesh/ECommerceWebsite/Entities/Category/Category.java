@@ -1,9 +1,27 @@
 package com.Nivesh.ECommerceWebsite.Entities.Category;
 
+import com.Nivesh.ECommerceWebsite.Entities.Product.Product;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Category {
 
+    @Id
     private int id;
     private String name;
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> product;
 
     public int getId() {
         return id;

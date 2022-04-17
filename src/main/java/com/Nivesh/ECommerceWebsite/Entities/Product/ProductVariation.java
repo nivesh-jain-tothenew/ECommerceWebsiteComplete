@@ -1,11 +1,20 @@
 package com.Nivesh.ECommerceWebsite.Entities.Product;
 
+import javax.persistence.*;
+
+@Entity
 public class ProductVariation {
 
+    @Id
+    private long productVariationId;
     private Integer quantityAvailable;
     private long price;
     private String primaryImageName;
     private boolean isActive;
+
+   // @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinTable(name = "product_variation_id", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "productVariationId"))
+    //private Product product;
 
     public Integer getQuantityAvailable() {
         return quantityAvailable;
@@ -31,13 +40,9 @@ public class ProductVariation {
         this.primaryImageName = primaryImageName;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
+    public boolean isActive() { return isActive; }
 
-    public void setActive(boolean active) {
-        this.isActive = active;
-    }
+    public void setActive(boolean active) { this.isActive = active; }
 
     /* ID
 PRODUCT_ID

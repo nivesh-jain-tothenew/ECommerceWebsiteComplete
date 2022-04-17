@@ -1,7 +1,8 @@
 package com.Nivesh.ECommerceWebsite.Entities.Product;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.Nivesh.ECommerceWebsite.Entities.Category.Category;
+
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -11,10 +12,22 @@ public class Product {
     private String name;
     private String description;
     private boolean isCancellable;
-    private String isReturnable;
+    private boolean isReturnable;
     private String brand;
     private boolean isActive;
     private boolean isDeleted;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Category category;
+    //@OneToMany(mappedBy = "product")
+    @ManyToOne
+    @JoinColumn(name = "product_variation_product_variation_id")
+    private ProductVariation productVariation;
+
+    public ProductVariation getProductVariation() {
+        return productVariation;
+    }
 
     public long getId() {
         return id;
@@ -48,11 +61,11 @@ public class Product {
         this.isCancellable = cancellable;
     }
 
-    public String getIsReturnable() {
+    public boolean getIsReturnable() {
         return isReturnable;
     }
 
-    public void setIsReturnable(String isReturnable) {
+    public void setIsReturnable(boolean isReturnable) {
         this.isReturnable = isReturnable;
     }
 
@@ -78,6 +91,14 @@ public class Product {
 
     public void setDeleted(boolean deleted) {
         this.isDeleted = deleted;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     /* ID
